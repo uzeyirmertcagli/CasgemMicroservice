@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CasgemMicroservice.Services.Order.Core.Application.Features.CQRS.Handlers
 {
-    public class GetAllOrderDetailQueryHandler : IRequestHandler<GetAllOrderDetailQueryResult, List<ResultOrderDetailDto>>
+    public class GetAllOrderDetailQueryHandler : IRequestHandler<GetAllOrderDetailQueryRequest, List<ResultOrderDetailDto>>
     {
         private readonly IRepository<OrderDetail> _repository;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace CasgemMicroservice.Services.Order.Core.Application.Features.CQRS.Handl
             _mapper = mapper;
         }
 
-        public async Task<List<ResultOrderDetailDto>> Handle(GetAllOrderDetailQueryResult request, CancellationToken cancellationToken)
+        public async Task<List<ResultOrderDetailDto>> Handle(GetAllOrderDetailQueryRequest request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetAllAsync();
             return _mapper.Map<List<ResultOrderDetailDto>>(values);
