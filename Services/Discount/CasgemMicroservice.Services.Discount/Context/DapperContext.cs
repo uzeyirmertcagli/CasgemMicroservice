@@ -7,8 +7,8 @@ namespace CasgemMicroservice.Services.Discount.Context
 {
     public class DapperContext :DbContext
     {
-        //private readonly IConfiguration _configuration;       
-        //private readonly string _connectionstring;
+        private readonly IConfiguration _configuration;
+        private readonly string _connectionstring;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,15 +17,15 @@ namespace CasgemMicroservice.Services.Discount.Context
         }
 
         public DbSet<DiscountCoupons> DiscountCouponses { get; set; }
-        //public DapperContext(IConfiguration configuration)
-        //{
-        //    _configuration = configuration;
-        //    _connectionstring = _configuration.GetConnectionString("DefaultConnection");
-        //}
+        public DapperContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _connectionstring = _configuration.GetConnectionString("DefaultConnection");
+        }
 
-         
 
-        //public IDbConnection CreateConnection() => new SqlConnection(_connectionstring);
+
+        public IDbConnection CreateConnection() => new SqlConnection(_connectionstring);
 
 
     }
